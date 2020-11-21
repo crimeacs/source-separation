@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/288950002.svg)](https://zenodo.org/badge/latestdoi/288950002)
+
 ## "Separation and denoising of seismically-induced signals with dual-path recurrent neural network architecture" 
 _Novoselov Artemii, Peter Balazs, G&ouml;tz Bokelmann_
 
