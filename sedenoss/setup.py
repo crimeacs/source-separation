@@ -1,4 +1,7 @@
+import sys
 from setuptools import setup
+
+sys.path[0:0] = ['sedenoss']
 
 setup(
     name='sedenoss',
@@ -10,3 +13,5 @@ setup(
     author_email='artemii.novoselov@univie.ac.at',
     description='Separation and denoising of seismically-induced signals with dual-path recurrent neural network architecture'
 )
+
+
