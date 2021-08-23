@@ -1,0 +1,12 @@
+more-itertools==8.8.0
+numpy==1.19.5
+xarray==0.18.2
+pandas==1.1.5
+scikit-learn==0.22.2.post1
+scipy==1.4.1
+torch-audiomentations==0.8.0
+torchtools @ git+https://github.com/pabloppp/pytorch-tools@c3096e3e601212e3a2576d5ebdaea4471b74b1ab
+pytorch-lightning==1.4.2
+matplotlib==3.2.2
+obspy==1.2.2
+torch==1.9.0

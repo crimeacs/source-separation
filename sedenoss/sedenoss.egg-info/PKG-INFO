@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: sedenoss
+Version: 0.2
+Summary: Separation and denoising of seismically-induced signals with dual-path recurrent neural network architecture
+Home-page: https://github.com/IMGW-univie/source-separation
+Author: Artemii Novoselov
+Author-email: artemii.novoselov@univie.ac.at
+License: MIT License
+Description: UNKNOWN
+Platform: UNKNOWN
