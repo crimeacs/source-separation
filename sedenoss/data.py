@@ -166,8 +166,8 @@ class DataModule(pl.LightningDataModule):
 
     def produce_datasets(self):
 
-        assert self.data_path[:-2] == 'nc', "Please provide data in .nc Xarray format"
-        assert self.noise_path[:-2] == 'nc', "Please provide data in .nc Xarray format"
+        assert self.data_path[-2:] == 'nc', "Please provide data in .nc Xarray format"
+        assert self.noise_path[-2:] == 'nc', "Please provide data in .nc Xarray format"
 
         da_data = xarray.open_dataset(self.data_path, engine='netcdf4')
         da_noise = xarray.open_dataset(self.noise_path, engine='netcdf4')
