@@ -5,11 +5,6 @@ from itertools import permutations
 import torch
 import torch.nn as nn
 
-
-import pytorch_lightning as pl
-pl.seed_everything(42)
-
-
 EPS = 1e-32
 
 

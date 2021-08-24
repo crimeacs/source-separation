@@ -3,7 +3,6 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 
 import pytorch_lightning as pl
-pl.seed_everything(42)
 
 import random
 
@@ -89,3 +88,4 @@ class DataModule(pl.LightningDataModule):
 
 def worker_init_fn(worker_id):
     np.random.seed(np.random.get_state()[1][0] + worker_id)
+

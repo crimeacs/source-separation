@@ -6,8 +6,6 @@ import torch
 import numpy as np
 import io
 
-import pytorch_lightning as pl
-pl.seed_everything(42)
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
