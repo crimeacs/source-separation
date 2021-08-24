@@ -2,7 +2,7 @@ from torchtools.optim import Ranger
 from torchtools.nn import Mish
 
 import pytorch_lightning as pl
-from utils import plot_tb_figure
+from sedenoss.utils import plot_tb_figure
 
 import torch
 import torch.nn as nn

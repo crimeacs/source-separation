@@ -3,7 +3,7 @@ import argparse, yaml
 
 
 from pytorch_lightning.callbacks.model_checkpoint import ModelCheckpoint
-from data import DataModule
+from sedenoss.data import DataModule
 
 # generate_data_samples(test_dataset)
 
