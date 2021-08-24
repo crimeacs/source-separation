@@ -343,7 +343,7 @@ class BF_module(DPRNN_base):
         return bf_filter
 
 class FaSNet_base(pl.LightningModule):
-    """Model base module
+    """Model module used for the study
     Args:
         enc_dim: int, Encoder dimensions
         feature_dim: int, Feature dimensions

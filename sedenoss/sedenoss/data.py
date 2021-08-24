@@ -74,8 +74,8 @@ class TrainSignals(Dataset):
 class DataModule(pl.LightningDataModule):
     def __init__(self,
                  batch_size: int = 192, num_workers: int = 4, denoising_mode: bool = False,
-                 data_path: str = '/gdrive/MyDrive/Seismic GAN/STEAD_data_JUL_2021/waveforms_signal.nc',
-                 noise_path: str = '/gdrive/MyDrive/Seismic GAN/STEAD_data_JUL_2021/waveforms_noise.nc',
+                 data_path: str = 'path/to/your/signal/*.nc',
+                 noise_path: str = 'path/to/your/noise/*.nc',
                  ):
         super().__init__()
         self.batch_size = batch_size
@@ -83,6 +83,8 @@ class DataModule(pl.LightningDataModule):
         self.denoising_mode = denoising_mode
         self.data_path = data_path
         self.noise_path = noise_path
+
+        print('Loading data into a dataset module, may take sometime depending on the size of the data')
 
         assert self.data_path[-2:] == 'nc', "Please provide data in .nc Xarray format"
         assert self.noise_path[-2:] == 'nc', "Please provide data in .nc Xarray format"
