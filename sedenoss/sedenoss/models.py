@@ -11,8 +11,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
 
-
-
 EPS = 1e-8
 
 class Conv2d(nn.Conv2d):
@@ -346,16 +344,17 @@ class BF_module(DPRNN_base):
 
 class FaSNet_base(pl.LightningModule):
     """Model base module
-    enc_dim: int, Encoder dimensions
-    feature_dim: int, Feature dimensions
-    hidden_dim: int, Hidden dimensions
-    layer: int, number of layers to use
-    segment_size: int, segment size to use
-    nspk: int, number of speakers (sources)
-    win_len: int, window length to use
-    lr: float, learning rate
-    step_size: int, step size for scheduling the optimization
-    gamma: float, decay factor for scheduling the optimization
+    Args:
+        enc_dim: int, Encoder dimensions
+        feature_dim: int, Feature dimensions
+        hidden_dim: int, Hidden dimensions
+        layer: int, number of layers to use
+        segment_size: int, segment size to use
+        nspk: int, number of speakers (sources)
+        win_len: int, window length to use
+        lr: float, learning rate
+        step_size: int, step size for scheduling the optimization
+        gamma: float, decay factor for scheduling the optimization
     """
     def __init__(self,
                  enc_dim: int = 128,
@@ -367,10 +366,8 @@ class FaSNet_base(pl.LightningModule):
                  win_len: int = 2,
                  lr: float = 1e-3,
                  step_size: int = 1,
-                 gamma: float = 0.9,
-                 **kwargs):
-
-        super(FaSNet_base, self).__init__()
+                 gamma: float = 0.9):
+        super().__init__()
 
         # parameters
         self.window = win_len
