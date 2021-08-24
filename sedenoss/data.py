@@ -83,8 +83,8 @@ class DataModule(pl.LightningDataModule):
         self.denoising_mode = denoising_mode
         self.data_path = data_path
         self.noise_path = noise_path
-        self.train_dataset = None
-        self.val_dataset = None
+        self.train_dataset = train_dataset
+        self.val_dataset = val_dataset
 
     def worker_init_fn(self, worker_id):
         np.random.seed(np.random.get_state()[1][0] + worker_id)
