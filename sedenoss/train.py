@@ -3,7 +3,9 @@ import argparse, yaml
 
 
 from pytorch_lightning.callbacks.model_checkpoint import ModelCheckpoint
-# from sedenoss.data import DataModule
+from sedenoss.data import DataModule
+from sedenoss.models import FaSNet_base
+
 
 # generate_data_samples(test_dataset)
 
@@ -11,7 +13,8 @@ if __name__ == "__main__":
     data_path = '/gdrive/MyDrive/Seismic GAN/STEAD_data_JUL_2021/waveforms_signal.nc'
     noise_path = '/gdrive/MyDrive/Seismic GAN/STEAD_data_JUL_2021/waveforms_noise.nc'
 
-    train_dataset, val_dataset = DataModule.produce_datasets(data_path, noise_path)
+    print('Loading data into a dataset module')
+    train_dataset, val_dataset = DataModule(data_path=data_path, noise_path=noise_path).produce_datasets()
 
     mc = ModelCheckpoint(monitor='val_loss', save_top_k=3)
 

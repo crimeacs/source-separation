@@ -165,6 +165,10 @@ class DataModule(pl.LightningDataModule):
         return augmentation_signal, augmentation_noise
 
     def produce_datasets(self):
+
+        assert self.data_path[:-2] == 'nc', "Please provide data in .nc Xarray format"
+        assert self.noise_path[:-2] == 'nc', "Please provide data in .nc Xarray format"
+
         da_data = xarray.open_dataset(self.data_path, engine='netcdf4')
         da_noise = xarray.open_dataset(self.noise_path, engine='netcdf4')
         train_val_data = da_data.sel(channel=0).to_array().values[0]
