@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="84c7c1e6-19ea-4920-8bfc-e9c52e18c398" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sedenoss/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/sedenoss/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sedenoss/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/sedenoss/train.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sedenoss/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="368" column="35" selection-start-line="368" selection-start-column="35" selection-end-line="368" selection-end-column="35" />
+            <state relative-caret-position="520">
+              <caret line="365" column="34" lean-forward="true" selection-start-line="365" selection-start-column="34" selection-end-line="365" selection-end-column="34" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -58,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sedenoss/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="35" selection-start-line="35" selection-end-line="36" selection-end-column="82" />
+            <state relative-caret-position="585">
+              <caret line="39" column="23" lean-forward="true" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
               <folding>
                 <element signature="e#1#22#0" expanded="true" />
               </folding>
@@ -114,8 +113,8 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>model</find>
       <find>taper</find>
+      <find>model</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -132,9 +131,9 @@
         <option value="$PROJECT_DIR$/data.py" />
         <option value="$PROJECT_DIR$/train.py" />
         <option value="$PROJECT_DIR$/sedenoss/__init__.py" />
-        <option value="$PROJECT_DIR$/sedenoss/train.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/sedenoss/models.py" />
+        <option value="$PROJECT_DIR$/sedenoss/train.py" />
       </list>
     </option>
   </component>
@@ -206,7 +205,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11362000" />
+    <option name="totallyTimeSpent" value="11490000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
@@ -299,16 +298,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sedenoss/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" selection-start-line="35" selection-end-line="36" selection-end-column="82" />
-          <folding>
-            <element signature="e#1#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -318,10 +307,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sedenoss/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="368" column="35" selection-start-line="368" selection-start-column="35" selection-end-line="368" selection-end-column="35" />
+        <state relative-caret-position="520">
+          <caret line="365" column="34" lean-forward="true" selection-start-line="365" selection-start-column="34" selection-end-line="365" selection-end-column="34" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sedenoss/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" column="23" lean-forward="true" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+          <folding>
+            <element signature="e#1#22#0" expanded="true" />
           </folding>
         </state>
       </provider>

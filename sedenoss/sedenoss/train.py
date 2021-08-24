@@ -37,6 +37,6 @@ if __name__ == "__main__":
     noise_path = '/gdrive/MyDrive/Seismic GAN/STEAD_data_JUL_2021/sample_noise.nc'
 
     dm = DataModule(data_path=data_path, noise_path=noise_path)
-    model = FaSNet_base()# .load_from_checkpoint(checkpoint_path="/gdrive/MyDrive/TraML/lightning_logs/version_29/checkpoints/epoch=4-step=12094.ckpt")
+    model = FaSNet_base# .load_from_checkpoint(checkpoint_path="/gdrive/MyDrive/TraML/lightning_logs/version_29/checkpoints/epoch=4-step=12094.ckpt")
 
     cli = LightningCLI(model, dm)
