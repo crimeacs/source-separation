@@ -1,52 +1,11 @@
-# @title Define Loss function
-from itertools import permutations
-
-import numpy as np
-import xarray
-import pandas as pd
-
-from sklearn.model_selection import train_test_split
-from scipy.signal import sawtooth, square, detrend
-
 import torch
-from torch.autograd import Variable
 import torch.nn as nn
 import torch.nn.functional as F
-import torch.optim as optim
-import torch.utils.data as data_utils
-from torch.utils.data import Dataset, DataLoader
 from torchtools.optim import Ranger
 from torchtools.nn import Mish
-from torch_audiomentations import Compose, Gain, HighPassFilter, LowPassFilter, PolarityInversion, Shift, PeakNormalization
-from torch.utils.tensorboard import SummaryWriter
-import tensorflow as tf
 
 import pytorch_lightning as pl
 pl.seed_everything(42)
-
-import os
-import random
-import glob
-import io
-
-import matplotlib.pyplot as plt
-from matplotlib.colorbar import make_axes
-from mpl_toolkits.axes_grid1 import make_axes_locatable
-from matplotlib.ticker import LogLocator, NullFormatter
-from matplotlib.patheffects import withStroke
-
-import obspy
-from obspy.clients.fdsn import Client
-from obspy import UTCDateTime
-from obspy.signal.filter import envelope
-from obspy import UTCDateTime
-from obspy.imaging.util import _set_xaxis_obspy_dates
-
-
-from scipy.signal import spectrogram as _spectrogram
-from scipy.ndimage import uniform_filter
-
-from warnings import warn
 
 class FaSNet_base(pl.LightningModule):
 
