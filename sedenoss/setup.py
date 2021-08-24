@@ -5,7 +5,7 @@ sys.path[0:0] = ['sedenoss']
 
 setup(
     name='sedenoss',
-    version='v0.2',
+    version='0.2',
     packages=find_packages(),
     url='https://github.com/IMGW-univie/source-separation',
     license='MIT License',
