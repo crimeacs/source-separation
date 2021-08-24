@@ -182,6 +182,8 @@ class DataModule(pl.LightningDataModule):
         data_train, data_val = train_test_split(train_val_data, train_size=0.95)
         noise_train, noise_val = train_test_split(train_val_noise, train_size=0.95)
 
+        print(len(data_train))
+        
         augmentation_signal, augmentation_noise = self.choose_agmentations()
 
         train_dataset = TrainSignals(data_train, noise_train, transform_signal=augmentation_signal,
