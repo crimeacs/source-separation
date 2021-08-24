@@ -5,7 +5,7 @@ import argparse, yaml
 from pytorch_lightning.callbacks.model_checkpoint import ModelCheckpoint
 from sedenoss.data import DataModule
 from sedenoss.models import FaSNet_base
-
+import pytorch_lightning as pl
 
 # generate_data_samples(test_dataset)
 

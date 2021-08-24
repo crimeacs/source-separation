@@ -70,7 +70,10 @@ class TrainSignals(Dataset):
         return len(self.data)
 
 class DataModule(pl.LightningDataModule):
-    def __init__(self, batch_size: int = 192, num_workers: int = 4, denoising_mode: bool = False,
+    def __init__(self,
+                 train_dataset = None,
+                 val_dataset = None,
+                 batch_size: int = 192, num_workers: int = 4, denoising_mode: bool = False,
                  data_path: str = '/gdrive/MyDrive/Seismic GAN/STEAD_data_JUL_2021/waveforms_signal.nc',
                  noise_path: str = '/gdrive/MyDrive/Seismic GAN/STEAD_data_JUL_2021/waveforms_noise.nc',
                  ):
@@ -80,6 +83,8 @@ class DataModule(pl.LightningDataModule):
         self.denoising_mode = denoising_mode
         self.data_path = data_path
         self.noise_path = noise_path
+        self.train_dataset = None
+        self.val_dataset = None
 
     def worker_init_fn(self, worker_id):
         np.random.seed(np.random.get_state()[1][0] + worker_id)
@@ -187,9 +192,9 @@ class DataModule(pl.LightningDataModule):
         return train_dataset, val_dataset
 
     def train_dataloader(self):
-        return DataLoader(train_dataset, batch_size=self.batch_size, num_workers=self.num_workers,
+        return DataLoader(self.train_dataset, batch_size=self.batch_size, num_workers=self.num_workers,
                           shuffle=True, pin_memory=True, worker_init_fn=self.worker_init_fn)
 
     def val_dataloader(self):
-        return DataLoader(val_dataset, batch_size=self.batch_size, num_workers=self.num_workers,
+        return DataLoader(self.val_dataset, batch_size=self.batch_size, num_workers=self.num_workers,
                           shuffle=False, pin_memory=True, worker_init_fn=self.worker_init_fn)
