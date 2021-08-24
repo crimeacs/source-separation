@@ -71,8 +71,6 @@ class TrainSignals(Dataset):
 
 class DataModule(pl.LightningDataModule):
     def __init__(self,
-                 train_dataset = None,
-                 val_dataset = None,
                  batch_size: int = 192, num_workers: int = 4, denoising_mode: bool = False,
                  data_path: str = '/gdrive/MyDrive/Seismic GAN/STEAD_data_JUL_2021/waveforms_signal.nc',
                  noise_path: str = '/gdrive/MyDrive/Seismic GAN/STEAD_data_JUL_2021/waveforms_noise.nc',
@@ -83,8 +81,24 @@ class DataModule(pl.LightningDataModule):
         self.denoising_mode = denoising_mode
         self.data_path = data_path
         self.noise_path = noise_path
-        self.train_dataset = train_dataset
-        self.val_dataset = val_dataset
+
+        assert self.data_path[-2:] == 'nc', "Please provide data in .nc Xarray format"
+        assert self.noise_path[-2:] == 'nc', "Please provide data in .nc Xarray format"
+
+        da_data = xarray.open_dataset(self.data_path, engine='netcdf4')
+        da_noise = xarray.open_dataset(self.noise_path, engine='netcdf4')
+        train_val_data = da_data.sel(channel=0).to_array().values[0]
+        train_val_noise = da_noise.sel(channel=0).to_array().values[0]
+
+        data_train, data_val = train_test_split(train_val_data, train_size=0.95)
+        noise_train, noise_val = train_test_split(train_val_noise, train_size=0.95)
+
+        augmentation_signal, augmentation_noise = self.choose_agmentations()
+
+        self.train_dataset = TrainSignals(data_train, noise_train, transform_signal=augmentation_signal,
+                                     transform_noise=augmentation_noise, denoising_mode=self.denoising_mode)
+        self.val_dataset = TrainSignals(data_val, noise_val, transform_signal=False, transform_noise=False,
+                                   denoising_mode=self.denoising_mode)
 
     def worker_init_fn(self, worker_id):
         np.random.seed(np.random.get_state()[1][0] + worker_id)
@@ -168,30 +182,6 @@ class DataModule(pl.LightningDataModule):
             augmentation_signal = augmentation_noise
 
         return augmentation_signal, augmentation_noise
-
-    def produce_datasets(self):
-
-        assert self.data_path[-2:] == 'nc', "Please provide data in .nc Xarray format"
-        assert self.noise_path[-2:] == 'nc', "Please provide data in .nc Xarray format"
-
-        da_data = xarray.open_dataset(self.data_path, engine='netcdf4')
-        da_noise = xarray.open_dataset(self.noise_path, engine='netcdf4')
-        train_val_data = da_data.sel(channel=0).to_array().values[0]
-        train_val_noise = da_noise.sel(channel=0).to_array().values[0]
-
-        data_train, data_val = train_test_split(train_val_data, train_size=0.95)
-        noise_train, noise_val = train_test_split(train_val_noise, train_size=0.95)
-
-        print(len(data_train))
-        
-        augmentation_signal, augmentation_noise = self.choose_agmentations()
-
-        train_dataset = TrainSignals(data_train, noise_train, transform_signal=augmentation_signal,
-                                          transform_noise=augmentation_noise, denoising_mode=self.denoising_mode)
-        val_dataset = TrainSignals(data_val, noise_val, transform_signal=False, transform_noise=False,
-                                        denoising_mode=self.denoising_mode)
-
-        return train_dataset, val_dataset
 
     def train_dataloader(self):
         return DataLoader(self.train_dataset, batch_size=self.batch_size, num_workers=self.num_workers,
