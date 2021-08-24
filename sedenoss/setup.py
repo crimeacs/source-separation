@@ -1,12 +1,12 @@
 import sys
-from setuptools import setup
+from setuptools import setup, find_packages
 
 sys.path[0:0] = ['sedenoss']
 
 setup(
     name='sedenoss',
     version='v0.2',
-    packages=setuptools.find_packages(),
+    packages=find_packages(),
     url='https://github.com/IMGW-univie/source-separation',
     license='MIT License',
     author='Artemii Novoselov',
