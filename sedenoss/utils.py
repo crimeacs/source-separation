@@ -9,7 +9,6 @@ import math
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-
 def plot_tb_figure(signal, estimates):
     """Plots waveforms aquired as the result of source separation"""
     fig, ax = plt.subplots(nrows=estimates.shape[1] + 2, ncols=1, figsize=(12, 9))

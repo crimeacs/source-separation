@@ -7,6 +7,7 @@ import torch.nn as nn
 
 EPS = 1e-32
 
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 class _Loss(nn.Module):
     def __init__(self, size_average=None, reduce=None, reduction='mean'):
