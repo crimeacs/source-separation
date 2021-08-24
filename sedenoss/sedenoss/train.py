@@ -10,8 +10,7 @@ from pytorch_lightning.utilities.cli import LightningCLI
 # generate_data_samples(test_dataset)
 
 if __name__ == "__main__":
-    # data_path = '/gdrive/MyDrive/Seismic GAN/STEAD_data_JUL_2021/sample_data.nc'
-    # noise_path = '/gdrive/MyDrive/Seismic GAN/STEAD_data_JUL_2021/sample_noise.nc'
+
     #
     # print('Loading data into a dataset module, may take sometime depending on the size of the data')
     #
@@ -34,6 +33,9 @@ if __name__ == "__main__":
     #
     #                      #  fast_dev_run = True,
     #                      )
+    data_path = '/gdrive/MyDrive/Seismic GAN/STEAD_data_JUL_2021/sample_data.nc'
+    noise_path = '/gdrive/MyDrive/Seismic GAN/STEAD_data_JUL_2021/sample_noise.nc'
+
     dm = DataModule(data_path=data_path, noise_path=noise_path)
     model = FaSNet_base()# .load_from_checkpoint(checkpoint_path="/gdrive/MyDrive/TraML/lightning_logs/version_29/checkpoints/epoch=4-step=12094.ckpt")
 
