@@ -3,7 +3,7 @@ from torchtools.nn import Mish
 
 import pytorch_lightning as pl
 
-from sedenoss.utils import plot_tb_figure
+from sedenoss.utils import *
 from sedenoss.loss import SI_SDR_Loss
 
 import torch
