@@ -409,29 +409,3 @@ def generate_data_samples(test_dataset):
             break
 
     plt.subplots_adjust(hspace=1)
-
-def taper(waveform, func, max_percentage, max_length=None):
-
-    npts = len(waveform)
-
-    # store all constraints for maximum taper length
-    max_half_lenghts = []
-    if max_percentage is not None:
-        max_half_lenghts.append(int(max_percentage * npts))
-    if max_length is not None:
-        max_half_lenghts.append(int(max_length * self.stats.sampling_rate))
-
-    # add full trace length to constraints
-    max_half_lenghts.append(int(npts / 2))
-    # select shortest acceptable window half-length
-    wlen = min(max_half_lenghts)
-
-    if 2 * wlen == npts:
-        taper_sides = func(2 * wlen)
-    else:
-        taper_sides = func(2 * wlen + 1)
-    taper = torch.tensor(np.hstack((taper_sides[:wlen], np.ones(npts - 2 * wlen),
-                                    taper_sides[len(taper_sides) - wlen:])))
-
-    waveform *= taper
-    return waveform

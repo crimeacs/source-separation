@@ -9,6 +9,8 @@ from sklearn.model_selection import train_test_split
 from torch_audiomentations import Compose, Gain, HighPassFilter, LowPassFilter, PolarityInversion, PeakNormalization
 import xarray
 
+from sedenoss.utils import *
+
 # @title Define dataset class
 class TrainSignals(Dataset):
     def __init__(self, data, noise, transform_signal, transform_noise, denoising_mode=False, test=False):
