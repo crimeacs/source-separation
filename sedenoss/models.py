@@ -390,8 +390,8 @@ class FaSNet_base(pl.LightningModule):
         self.lr = lr
 
         self.save_hyperparameters()
-        # waveform encoder
 
+        # waveform encoder
         self.encoder = Encoder(win_len, enc_dim)  # [B T]-->[B N L]
 
         self.enc_LN = nn.GroupNorm(1, self.enc_dim, eps=1e-8)  # [B N L]-->[B N L]
@@ -442,7 +442,7 @@ class FaSNet_base(pl.LightningModule):
     def training_step(self, batch, batch_idx):
         signal, n_sources = batch
         mix = torch.sum(signal, dim=1, keepdim=False)
-        estimates = model(mix)
+        estimates = self(mix)
 
         loss, reorder_estimate_source = self.criterion(signal, estimates)
 
@@ -458,7 +458,7 @@ class FaSNet_base(pl.LightningModule):
     def validation_step(self, batch, batch_idx):
         signal, n_sources = batch
         mix = torch.sum(signal, dim=1, keepdim=False)
-        estimates = model(mix)
+        estimates = self(mix)
 
         loss, reorder_estimate_source = self.criterion(signal, estimates)
 
@@ -470,7 +470,7 @@ class FaSNet_base(pl.LightningModule):
     def test_step(self, batch, batch_idx):
         signal, n_sources = batch
         mix = torch.sum(signal, dim=1, keepdim=False)
-        estimates = model(mix)
+        estimates = self(mix)
 
         loss, reorder_estimate_source = self.criterion(signal, estimates)
 
