@@ -5,6 +5,7 @@ from matplotlib.ticker import LogLocator, NullFormatter
 import torch
 import numpy as np
 import io
+import math
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -277,17 +278,13 @@ def plot_spectrogram(trace, time_fmt='relative', reftime=None,
     # object for later use
     ax.time_fmt = time_fmt
     ax.reftime = reftime
-    if time_fmt == 'utc':
-        t0 = reftime_ + (time[0] - halfbin_time) / 86400
-        t1 = reftime_ + (time[-1] + halfbin_time) / 86400
-        _set_xaxis_obspy_dates(ax, False)
+
+    t0 = reftime_ + time[0] - halfbin_time
+    t1 = reftime_ + time[-1] + halfbin_time
+    if xlabel == False:
+        ax.set_xlabel('Time since {}, s'.format(reftime.strftime('%FT%T.%f')))
     else:
-        t0 = reftime_ + time[0] - halfbin_time
-        t1 = reftime_ + time[-1] + halfbin_time
-        if xlabel == False:
-            ax.set_xlabel('Time since {}, s'.format(reftime.strftime('%FT%T.%f')))
-        else:
-            ax.set_xlabel(xlabel)
+        ax.set_xlabel(xlabel)
 
     extent = (t0, t1, freq[0] - halfbin_freq, freq[-1] + halfbin_freq)
 
