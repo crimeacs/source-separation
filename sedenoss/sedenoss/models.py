@@ -439,6 +439,7 @@ class FaSNet_base(pl.LightningModule):
     def training_step(self, batch, batch_idx):
         signal, n_sources = batch
         mix = torch.sum(signal, dim=1, keepdim=False)
+        mix = mix / torch.abs(mix.max())
         estimates = self(mix)
 
         loss, reorder_estimate_source = self.criterion(signal, estimates)
@@ -455,6 +456,7 @@ class FaSNet_base(pl.LightningModule):
     def validation_step(self, batch, batch_idx):
         signal, n_sources = batch
         mix = torch.sum(signal, dim=1, keepdim=False)
+        mix = mix / torch.abs(mix.max())
         estimates = self(mix)
 
         loss, reorder_estimate_source = self.criterion(signal, estimates)
@@ -467,6 +469,7 @@ class FaSNet_base(pl.LightningModule):
     def test_step(self, batch, batch_idx):
         signal, n_sources = batch
         mix = torch.sum(signal, dim=1, keepdim=False)
+        mix = mix/torch.abs(mix.max())
         estimates = self(mix)
 
         loss, reorder_estimate_source = self.criterion(signal, estimates)

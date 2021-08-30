@@ -33,6 +33,7 @@ class TrainSignals(Dataset):
 
         signal_1 = signal_1 - signal_1.mean()
         signal_1 = torch.from_numpy(signal_1).unsqueeze(1).float()
+        signal_1 = taper(signal_1, func=torch.hann_window, max_percentage=0.05).view(1800, 1)
 
         if self.transform_signal != False:
             signal_1 = self.transform_signal(signal_1.T.unsqueeze(0), sample_rate=self.sampling_rate)
@@ -57,6 +58,7 @@ class TrainSignals(Dataset):
 
             signal = signal - signal.mean()
             signal = torch.from_numpy(signal).unsqueeze(1).float()
+            signal = taper(signal, func=torch.hann_window, max_percentage=0.05).view(1800, 1)
 
             if self.transform_noise != False:
                 signal = self.transform_noise(signal.T.unsqueeze(0), sample_rate=self.sampling_rate)
