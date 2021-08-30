@@ -1,5 +1,3 @@
-import numpy as np
-import torch
 from torch.utils.data import Dataset, DataLoader
 
 import pytorch_lightning as pl
@@ -11,7 +9,6 @@ import xarray
 
 from sedenoss.utils import *
 
-# @title Define dataset class
 class TrainSignals(Dataset):
     def __init__(self, data, noise, transform_signal, transform_noise, denoising_mode=False, test=False):
         self.data = data
@@ -34,7 +31,7 @@ class TrainSignals(Dataset):
         signal_1 = signal_1 - signal_1.mean()
         signal_1 = torch.from_numpy(signal_1).unsqueeze(1).float()
         signal_1 = taper(signal_1, func=torch.hann_window, max_percentage=0.05).view(1800, 1)
-
+        print(signal_1.shape)
         if self.transform_signal != False:
             signal_1 = self.transform_signal(signal_1.T.unsqueeze(0), sample_rate=self.sampling_rate)
             signal_1 = taper(signal_1, func=torch.hann_window, max_percentage=0.05).view(1800, 1)
@@ -73,6 +70,7 @@ class TrainSignals(Dataset):
     def __len__(self):
         return len(self.data)
 
+
 class DataModule(pl.LightningDataModule):
     def __init__(self,
                  batch_size: int = 192, num_workers: int = 4, denoising_mode: bool = False,
@@ -93,6 +91,7 @@ class DataModule(pl.LightningDataModule):
 
         da_data = xarray.open_dataset(self.data_path, engine='netcdf4')
         da_noise = xarray.open_dataset(self.noise_path, engine='netcdf4')
+
         train_val_data = da_data.sel(channel=0).to_array().values[0]
         train_val_noise = da_noise.sel(channel=0).to_array().values[0]
 
@@ -102,9 +101,9 @@ class DataModule(pl.LightningDataModule):
         augmentation_signal, augmentation_noise = self.choose_agmentations()
 
         self.train_dataset = TrainSignals(data_train, noise_train, transform_signal=augmentation_signal,
-                                     transform_noise=augmentation_noise, denoising_mode=self.denoising_mode)
+                                          transform_noise=augmentation_noise, denoising_mode=self.denoising_mode)
         self.val_dataset = TrainSignals(data_val, noise_val, transform_signal=False, transform_noise=False,
-                                   denoising_mode=self.denoising_mode)
+                                        denoising_mode=self.denoising_mode)
 
     def worker_init_fn(self, worker_id):
         np.random.seed(np.random.get_state()[1][0] + worker_id)

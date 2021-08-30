@@ -366,6 +366,7 @@ def process_snr(line):
 
 
 def taper(waveform, func, max_percentage, max_length=None):
+    waveform = waveform.squeeze()
     npts = len(waveform)
 
     # store all constraints for maximum taper length
