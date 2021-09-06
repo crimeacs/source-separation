@@ -16,6 +16,7 @@ This is the code to reproduce "SEDENOSS: SEparating and DENOising Seismic Signal
 !git clone https://github.com/IMGW-univie/source-separation.git
 %cd /content/source-separation/sedenoss
 !pip install -r requirements.txt
+!pip install -e .
 ```
 
 ## How to use?
