@@ -18,5 +18,11 @@ This is the code to reproduce "SEDENOSS: SEparating and DENOising Seismic Signal
 !pip install -r requirements.txt
 ```
 
+## How to use?
+Please refer to
+```bash
+%cd /content/source-separation/sedenoss/sedenoss
+!python train.py --help
+```
 
 For earthquake related applications please download the data from [the STEAD Dataset](https://github.com/smousavi05/STEAD) and adopt the notebooks accoringly to your data locations (as there is no automated way to download the data as of 18.11.2020)
