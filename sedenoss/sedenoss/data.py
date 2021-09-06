@@ -24,14 +24,22 @@ class TrainSignals(Dataset):
     def __getitem__(self, idx):
 
         # Loading
-        signal_1 = self.data[idx]
+        if self.denoising_mode:
+            signal_1 = self.data[idx]
+        else:
+            choice = random.choice([0, 1])
+            if choice == 0:
+                signal_1 = self.noise[np.random.randint(0, len(self.noise))]
+            else:
+                signal_1 = self.data[np.random.randint(0, len(self.data))]
+
         np.random.seed()
         signals = []
 
         signal_1 = signal_1 - signal_1.mean()
         signal_1 = torch.from_numpy(signal_1).unsqueeze(1).float()
         signal_1 = taper(signal_1, func=torch.hann_window, max_percentage=0.05).view(1800, 1)
-        print(signal_1.shape)
+
         if self.transform_signal != False:
             signal_1 = self.transform_signal(signal_1.T.unsqueeze(0), sample_rate=self.sampling_rate)
             signal_1 = taper(signal_1, func=torch.hann_window, max_percentage=0.05).view(1800, 1)
