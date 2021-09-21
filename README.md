@@ -30,3 +30,6 @@ Please refer to
 Start `SEDENOSS.ipynb` in the Google Colaboratory and follow instructions
 
 For earthquake related applications please download the data from [the STEAD Dataset](https://github.com/smousavi05/STEAD) and adopt the notebooks accoringly to your data locations (as there is no automated way to download the data as of 18.11.2020)
+
+## Work in progress
+This repo will be updated as soon as I'm done with all the other burning papers and repos (~end of october). Promise!
