@@ -9,6 +9,9 @@ _Novoselov Artemii, Peter Balazs, G&ouml;tz Bokelmann_
 
 This is the code to reproduce ["SEDENOSS: SEparating and DENOising Seismic Signals with dual-path recurrent neural network architecture"](https://www.essoar.org/doi/10.1002/essoar.10504944.2) paper 2021
 
+## Abstract
+> Seismologists have to deal with overlapping and noisy signals. Techniques such as source separation can be used to solve this problem. Over the past few decades, signal processing techniques used for source separation have advanced significantly for multi-station settings. But not so many options are available when it comes to single-station data. Using Machine Learning, we demonstrate the possibility of separating sources for single-station, one-component seismic recordings. The technique that we use for seismic signal separation is based on a dual-path recurrent neural network which is applied directly to the time domain data. Such source separation may find applications in most tasks of seismology, including earthquake analysis, aftershocks, nuclear verification, seismo-acoustics, and ambient-noise tomography. We train the network on seismic data from STanford EArthquake Dataset (STEAD) and demonstrate that our approach is a) capable of denoising seismic data and b) capable of separating two earthquake signals from one another. In this work, we show that Machine Learning is useful for earthquake-induced source separation. 
+
 ## How to install?
 ```bash
 %cd /content
