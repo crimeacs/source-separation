@@ -36,3 +36,6 @@ For earthquake related applications please download the data from [the STEAD Dat
 
 ## Work in progress
 This repo will be updated as soon as I'm done with all the other burning papers and repos (~end of october). Promise!
+
+## Know issues
+If you are having troubles with `torch-audiomentation` try installing it with `pip install git+https://github.com/asteroid-team/torch-audiomentations.git`
